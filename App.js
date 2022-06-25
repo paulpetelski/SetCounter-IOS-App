@@ -1,21 +1,51 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import React from "react";
+import { StyleSheet, Text, View, SafeAreaView } from "react-native";
+import { ScrollView } from "react-native";
+import Set from "./components/Set";
+import Title from "./components/Title";
+
+// yellow: #ffd97d
+// light green: #aaf683
+// dark green: #60d394
+// red: #ee6055
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <SafeAreaView>
+        <ScrollView
+          style={styles.scrollview}
+          showsVerticalScrollIndicator="false"
+        >
+          <View style={styles.row}>
+            <Title title="Exercises" />
+          </View>
+
+          <Set></Set>
+          <Set></Set>
+          <Set></Set>
+          <Set></Set>
+        </ScrollView>
+      </SafeAreaView>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: "column",
+    flexWrap: "wrap",
+    backgroundColor: "#fff",
+    alignItems: "center",
+  },
+  row: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+  },
+  scrollview: {
+    marginHorizontal: 20,
   },
 });
