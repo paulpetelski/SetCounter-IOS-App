@@ -23,7 +23,7 @@ const OneButton = () => {
     onPress();
     if (time === 60) {
       const timerId = setInterval(() => {
-        timerRef.current -= 10;
+        timerRef.current -= 1;
         if (timerRef.current < 0) {
           clearInterval(timerId);
           setColor("#aaf683");
@@ -31,7 +31,7 @@ const OneButton = () => {
           setTime(timerRef.current);
           setColor("#ee6055");
         }
-      }, 1000);
+      }, 100);
     }
     return () => {
       clearInterval(timerId);
@@ -42,7 +42,7 @@ const OneButton = () => {
     <View style={styles.container}>
       <TouchableOpacity onPress={startTimer}>
         <SafeAreaView style={[styles.button, { backgroundColor: color }]}>
-          <Text>{time}</Text>
+          <Text style={styles.timeText}>{time}</Text>
         </SafeAreaView>
       </TouchableOpacity>
     </View>
@@ -72,6 +72,9 @@ const styles = StyleSheet.create({
   },
   countText: {
     color: "#FF00FF",
+  },
+  timeText: {
+    fontSize: 30,
   },
 });
 

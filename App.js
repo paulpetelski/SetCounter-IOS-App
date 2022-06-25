@@ -22,10 +22,10 @@ export default function App() {
             <Title title="Exercises" />
           </View>
 
-          <Set></Set>
-          <Set></Set>
-          <Set></Set>
-          <Set></Set>
+          <Set exercise="Bicep Curl"></Set>
+          <Set exercise="Bench Press"></Set>
+          <Set exercise="Squat"></Set>
+          <Set exercise="Shoulder Press"></Set>
         </ScrollView>
       </SafeAreaView>
     </>

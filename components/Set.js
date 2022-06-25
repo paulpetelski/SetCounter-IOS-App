@@ -10,24 +10,34 @@ import {
   TouchableOpacity,
 } from "react-native";
 import OneButton from "./Buttons";
+import Title from "./Title";
 
-function Set() {
+const Set = (props) => {
   return (
     <>
-      <View style={styles.row}>
-        <OneButton></OneButton>
-        <OneButton></OneButton>
-        <OneButton></OneButton>
+      <View style={styles.container}>
+        <View style={styles.row}>
+          <Title title={props.exercise}></Title>
+        </View>
+        <View style={styles.row}>
+          <OneButton></OneButton>
+          <OneButton></OneButton>
+          <OneButton></OneButton>
+        </View>
+        <View style={styles.row}></View>
       </View>
-      <View style={styles.row}></View>
     </>
   );
-}
+};
 
 const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
-    paddingTop: 50,
+    paddingTop: 20,
+  },
+  container: {
+    borderBottomColor: "black",
+    borderBottomWidth: 1,
   },
 });
 
