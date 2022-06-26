@@ -1,14 +1,13 @@
 import { StyleSheet, Text, View, ScrollView } from "react-native";
 import Set from "./Set";
 import React from "react";
+import PrintExercises from "./PrintExercises";
+import { exercises } from "../data/Exercises.js";
 
 const HomeScreen = () => {
   return (
     <ScrollView style={styles.scrollview} showsVerticalScrollIndicator="false">
-      <Set exercise="Bicep Curl"></Set>
-      <Set exercise="Bench Press"></Set>
-      <Set exercise="Squat"></Set>
-      <Set exercise="Shoulder Press"></Set>
+      <PrintExercises items={exercises}></PrintExercises>
     </ScrollView>
   );
 };

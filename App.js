@@ -22,6 +22,9 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 // Search starting with ios-
 // use Ionicons
 
+// === TABS/NAVIGATION ===
+// https://reactnavigation.org/
+
 const Tab = createBottomTabNavigator();
 
 const MyTheme = {
