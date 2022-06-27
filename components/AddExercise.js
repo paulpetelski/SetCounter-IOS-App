@@ -1,69 +1,41 @@
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, Text, View, Button, ScrollView } from "react-native";
 import React, { useState } from "react";
 import Title from "./Title";
-//import Exercises from "../data/Exercises";
 import PrintExercises from "./PrintExercises";
-import { exercises } from "../data/Exercises.js";
 import { TextInput } from "react-native";
-//const items = Exercises();
-//const items = [{ name: "Bicep Curl" }, { name: "Bench Press" }];
 import PrintArray from "./PrintArray";
+import Set from "./Set";
 
-const arr = [{ name: "Bicep Curl", key: 1 }];
-let array = ["Bicep Curl"];
-class AddExercise extends React.Component {
-  //const [text, setText] = useState("");
+export default function AddExercise() {
+  const [exercise, setExercise] = useState("");
+  const [exercises, setExercises] = useState([]);
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      text: "",
-      key: 5,
-      arr,
-    };
-  }
-
-  addToArray = () => {
-    console.log("presssed");
-    textString = `name: ${text}, key: 4`;
-    exercises.push(textString);
-  };
-
-  printArray = () => {
-    for (let i = 0; i < array.length; i++) {
-      console.log(array[i]);
-    }
-  };
-
-  resetArray = () => {
-    array = [""];
-    console.log("Cleared");
+  const handleAddTask = () => {
+    setExercises([...exercises, exercise]);
+    setExercise(null);
   };
 
   // text input not working yet
-  render() {
-    return (
-      <View>
-        <Text>Current Exercises:</Text>
-        <TextInput
-          placeholder="Placeholder"
-          returnKeyType="done"
-          style={{ height: 60 }}
-          onChangeText={(newText) =>
-            this.setState({ text: newText, key: this.state.key + 1 })
-          }
-          defaultValue={this.state.text}
-          onSubmitEditing={(a) => array.push(this.state.text)}
-        />
-        <Button title="Submit" onPress={this.printArray}></Button>
-        <Button title="Reset" onPress={this.resetArray}></Button>
-        <Text>{this.state.text}</Text>
-      </View>
-    );
-  }
-}
+  return (
+    <ScrollView style={styles.scrollview} showsVerticalScrollIndicator="false">
+      <Text style={styles.header}>Add an Exercise:</Text>
+      <TextInput
+        placeholder="Placeholder"
+        returnKeyType="done"
+        style={styles.input}
+        onChangeText={(newExercise) => setExercise(newExercise)}
+        onSubmitEditing={() => handleAddTask()}
+      />
+      <Button title="Submit" onPress={() => handleAddTask()}></Button>
+      <Button title="Reset"></Button>
 
-export default AddExercise;
+      {exercises.map((item, index) => {
+        return <Set exercise={item} key={index}></Set>;
+        //return <Text key={index}>{item}</Text>;
+      })}
+    </ScrollView>
+  );
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -80,5 +52,19 @@ const styles = StyleSheet.create({
   },
   scrollview: {
     marginHorizontal: 20,
+  },
+  input: {
+    paddingVertical: 15,
+    paddingHorizontal: 15,
+    backgroundColor: "#dee2e6",
+    borderRadius: 60,
+    borderColor: "#ff5500",
+    borderWidth: 1,
+    marginBottom: 30,
+  },
+  header: {
+    fontSize: 20,
+    paddingTop: 30,
+    paddingBottom: 10,
   },
 });
