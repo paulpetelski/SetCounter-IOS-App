@@ -9,35 +9,59 @@ import { TextInput } from "react-native";
 //const items = [{ name: "Bicep Curl" }, { name: "Bench Press" }];
 import PrintArray from "./PrintArray";
 
-const AddExercise = () => {
-  const [text, setText] = useState("");
+const arr = [{ name: "Bicep Curl", key: 1 }];
+let array = ["Bicep Curl"];
+class AddExercise extends React.Component {
+  //const [text, setText] = useState("");
 
-  const addToArray = () => {
+  constructor(props) {
+    super(props);
+    this.state = {
+      text: "",
+      key: 5,
+      arr,
+    };
+  }
+
+  addToArray = () => {
     console.log("presssed");
     textString = `name: ${text}, key: 4`;
     exercises.push(textString);
   };
 
+  printArray = () => {
+    for (let i = 0; i < array.length; i++) {
+      console.log(array[i]);
+    }
+  };
+
+  resetArray = () => {
+    array = [""];
+    console.log("Cleared");
+  };
+
   // text input not working yet
-  return (
-    <View>
-      <Text>Current Exercises:</Text>
-      <TextInput
-        placeholder="Placeholder"
-        returnKeyType="done"
-        style={{ height: 60 }}
-        onChangeText={(newText) => setText(newText)}
-        defaultValue={text}
-        onSubmitEditing={(a) => exercises.push(`name: ${text}, key: 5`)}
-      />
-      <Button title="Submit" onPress={addToArray()}></Button>
-      <Text>{text}</Text>
-      <Text>
-        <PrintArray items={exercises}></PrintArray>
-      </Text>
-    </View>
-  );
-};
+  render() {
+    return (
+      <View>
+        <Text>Current Exercises:</Text>
+        <TextInput
+          placeholder="Placeholder"
+          returnKeyType="done"
+          style={{ height: 60 }}
+          onChangeText={(newText) =>
+            this.setState({ text: newText, key: this.state.key + 1 })
+          }
+          defaultValue={this.state.text}
+          onSubmitEditing={(a) => array.push(this.state.text)}
+        />
+        <Button title="Submit" onPress={this.printArray}></Button>
+        <Button title="Reset" onPress={this.resetArray}></Button>
+        <Text>{this.state.text}</Text>
+      </View>
+    );
+  }
+}
 
 export default AddExercise;
 
