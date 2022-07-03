@@ -56,7 +56,7 @@ export default function App() {
 
               if (route.name === "Home") {
                 iconName = focused ? "ios-home" : "ios-home-outline";
-              } else if (route.name === "Add Exercises") {
+              } else if (route.name === "Settings") {
                 iconName = focused ? "ios-list-outline" : "ios-list";
               }
               return <Ionicons name={iconName} size={size} color={color} />;
@@ -67,8 +67,8 @@ export default function App() {
             headerMode: "none",
           })}
         >
-          <Tab.Screen name="Home" component={HomeScreen}></Tab.Screen>
-          <Tab.Screen name="Add Exercises" component={AddExercise}></Tab.Screen>
+          <Tab.Screen name="Home" component={AddExercise}></Tab.Screen>
+          <Tab.Screen name="Settings" component={HomeScreen}></Tab.Screen>
         </Tab.Navigator>
       </NavigationContainer>
     </>

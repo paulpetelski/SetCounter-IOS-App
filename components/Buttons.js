@@ -17,7 +17,7 @@ const OneButton = () => {
   const [time, setTime] = useState(60);
   const timerRef = React.useRef(time);
 
-  const [color, setColor] = useState("#a2d2ff");
+  const [color, setColor] = useState("#4a4e69");
 
   const startTimer = () => {
     onPress();
@@ -31,7 +31,7 @@ const OneButton = () => {
           setTime(timerRef.current);
           setColor("#ee6055");
         }
-      }, 100);
+      }, 1000);
     }
     return () => {
       clearInterval(timerId);
@@ -58,10 +58,9 @@ const styles = StyleSheet.create({
   },
   button: {
     alignItems: "center",
-    backgroundColor: "#a2d2ff",
-    //backgroundColor: { color },
+    backgroundColor: "#00bbf9",
     borderRadius: 50,
-    width: 100,
+    width: "100%",
     height: 100,
     padding: 10,
     justifyContent: "center",
@@ -71,10 +70,11 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   countText: {
-    color: "#FF00FF",
+    color: "white",
   },
   timeText: {
     fontSize: 30,
+    color: "white",
   },
 });
 

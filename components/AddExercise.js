@@ -11,27 +11,38 @@ export default function AddExercise() {
   const [exercises, setExercises] = useState([]);
 
   const handleAddTask = () => {
-    setExercises([...exercises, exercise]);
-    setExercise(null);
+    if (exercise != null) {
+      setExercises([...exercises, exercise]);
+      setExercise(null);
+    }
+  };
+
+  const resetExercises = () => {
+    setExercises([]);
   };
 
   // text input not working yet
   return (
     <ScrollView style={styles.scrollview} showsVerticalScrollIndicator="false">
-      <Text style={styles.header}>Add an Exercise:</Text>
       <TextInput
-        placeholder="Placeholder"
+        placeholder="Add an exercise..."
+        value={exercise}
         returnKeyType="done"
         style={styles.input}
         onChangeText={(newExercise) => setExercise(newExercise)}
         onSubmitEditing={() => handleAddTask()}
       />
-      <Button title="Submit" onPress={() => handleAddTask()}></Button>
-      <Button title="Reset"></Button>
+      <View style={styles.row}>
+        <Button
+          color="red"
+          title="Clear"
+          onPress={() => resetExercises()}
+        ></Button>
+        <Button title="Submit" onPress={() => handleAddTask()}></Button>
+      </View>
 
       {exercises.map((item, index) => {
         return <Set exercise={item} key={index}></Set>;
-        //return <Text key={index}>{item}</Text>;
       })}
     </ScrollView>
   );
@@ -54,11 +65,12 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
   },
   input: {
+    marginTop: 30,
     paddingVertical: 15,
     paddingHorizontal: 15,
-    backgroundColor: "#dee2e6",
+    backgroundColor: "#fff",
     borderRadius: 60,
-    borderColor: "#ff5500",
+    borderColor: "#00bbf9",
     borderWidth: 1,
     marginBottom: 30,
   },
@@ -66,5 +78,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     paddingTop: 30,
     paddingBottom: 10,
+  },
+  red: {
+    color: "red",
   },
 });
